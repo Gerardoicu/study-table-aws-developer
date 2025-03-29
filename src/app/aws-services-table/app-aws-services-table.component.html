@@ -1,4 +1,12 @@
 <div class="actions">
+  <div class="search-container">
+    🔎 <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    (ngModelChange)="onSearchChange()"
+    placeholder="Buscar servicio o descripción..."
+  />
+  </div>
   <button (click)="reset()">🔄 Show answers</button>
   <button (click)="shuffle()">🔀 Shuffle</button>
   <div class="timer">⏱️ Tiempo: {{ elapsedTime | timeFormat }}</div>
@@ -16,7 +24,7 @@
   </thead>
 
   <tbody>
-  <tr *ngFor="let awsService of awsServicesShuffle; let rowIndex = index">
+  <tr *ngFor="let awsService of filteredAwsServices; let rowIndex = index">
     <td class="fixed-col">{{ awsService.id }}</td>
     <td class="fixed-col">{{ awsService.service }}</td>
     <td *ngFor="let col of columns; let colIndex = index"

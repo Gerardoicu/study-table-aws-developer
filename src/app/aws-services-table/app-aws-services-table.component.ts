@@ -4,15 +4,18 @@ import { CommonModule } from '@angular/common';
 import { TimeFormatPipe } from '../timeFormatPipe';
 import {ServiceAws} from './ServiceAws';
 import {AwsService} from './awsService';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-aws-services-table',
   standalone: true,
-  imports: [CommonModule, TimeFormatPipe],
+  imports: [CommonModule, TimeFormatPipe, FormsModule],
   templateUrl: './app-aws-services-table.component.html',
   styleUrls: ['./app-aws-services-table.component.scss']
 })
 export class AppAwsServicesTableComponent implements OnInit {
+  searchQuery: string = '';
+  filteredAwsServices: ServiceAws[] = [];
   bestTime: number | null = null;
   touchedCells = new Set<string>();
   awsServices: ServiceAws[] = [];
@@ -55,14 +58,27 @@ export class AppAwsServicesTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.bestTime = this.getBestTime();
     this.awsServiceService.getAwsServices().subscribe(services => {
       this.awsServices = services.map(service => ({ ...service }));
-      this.reset();
+      this.awsServicesShuffle = this.awsServices.map(service => ({ ...service }));
+      this.filteredAwsServices = [...this.awsServicesShuffle]; 
     });
   }
 
+  onSearchChange(): void {
+    const query = this.searchQuery.toLowerCase().trim();
+
+    if (!query) {
+      this.filteredAwsServices = [...this.awsServicesShuffle];
+      return;
+    }
+
+    this.filteredAwsServices = this.awsServicesShuffle.filter(service =>
+      service.service.toLowerCase().includes(query) ||
+      service.description.toLowerCase().includes(query)
+    );
+  }
   getColumnValue(service: ServiceAws, columnKey: string): string {
     return <string>service[columnKey as keyof ServiceAws] ?? '';
   }
@@ -121,6 +137,8 @@ export class AppAwsServicesTableComponent implements OnInit {
     this.awsServicesShuffle = this.awsServices.map(service => ({ ...service }));
     this.selectedCell = null;
     this.touchedCells.clear();
+    this.filteredAwsServices = [...this.awsServicesShuffle];
+
     this.cdr.detectChanges();
   }
 
