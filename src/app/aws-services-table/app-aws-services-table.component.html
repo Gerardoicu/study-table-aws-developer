@@ -1,0 +1,35 @@
+<div class="actions">
+  <button (click)="reset()">🔄 Show answers</button>
+  <button (click)="shuffle()">🔀 Shuffle</button>
+  <div class="timer">⏱️ Tiempo: {{ elapsedTime | timeFormat }}</div>
+  <div *ngIf="bestTime !== null" class="best-time">🏆 Mejor tiempo: {{ bestTime | timeFormat }}</div>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th class="fixed-col">ID</th>
+    <th class="fixed-col">Service</th>
+
+    <th *ngFor="let col of columns">{{ col.label }}</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let awsService of awsServicesShuffle; let rowIndex = index">
+    <td class="fixed-col">{{ awsService.id }}</td>
+    <td class="fixed-col">{{ awsService.service }}</td>
+    <td *ngFor="let col of columns; let colIndex = index"
+        (mousedown)="onCellClick($event, colIndex, rowIndex)"
+        (contextmenu)="$event.preventDefault()"
+        [ngClass]="{
+      'clickable-cell': true,
+      'selected': selectedCell?.x === colIndex && selectedCell?.y === rowIndex,
+      'correct': getCellStatus(colIndex, rowIndex) === 'correct',
+      'incorrect': getCellStatus(colIndex, rowIndex) === 'incorrect'
+    }">
+      {{ getColumnValue(awsService, col.key) }}
+    </td>
+  </tr>
+  </tbody>
+</table>
