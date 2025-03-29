@@ -14,7 +14,7 @@ export class AwsService {
   constructor(private http: HttpClient) { }
 
   getAwsServices(): Observable<ServiceAws[]> {
-    return this.http.get<ServiceAws[]>('/assets/data/aws-services.json');
+    return this.http.get<ServiceAws[]>('assets/data/aws-services.json');
   }
   /*
   getAwsServices(): Observable<AwsService[]> {
