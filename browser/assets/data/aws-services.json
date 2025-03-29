@@ -1,0 +1,318 @@
+[
+  {
+    "id": 1,
+    "service": "Amazon Athena",
+    "description": "Servicio interactivo de consultas que permite analizar datos almacenados en S3 mediante SQL estándar, sin necesidad de administrar servidores."
+  },
+  {
+    "id": 2,
+    "service": "Amazon Kinesis",
+    "description": "Plataforma en tiempo real para procesar y analizar datos en streaming, permitiendo la ingesta y análisis continuo de datos a gran escala."
+  },
+  {
+    "id": 3,
+    "service": "Amazon OpenSearch Service",
+    "description": "Servicio de búsqueda y análisis basado en Apache OpenSearch y Elasticsearch, optimizado para análisis de logs y monitoreo en tiempo real."
+  },
+  {
+    "id": 4,
+    "service": "AWS AppSync",
+    "description": "Servicio administrado que permite crear APIs GraphQL para aplicaciones web y móviles con sincronización en tiempo real."
+  },
+  {
+    "id": 5,
+    "service": "Amazon EventBridge",
+    "description": "Bus de eventos sin servidor que permite conectar aplicaciones con eventos de AWS y servicios de terceros en tiempo real."
+  },
+  {
+    "id": 6,
+    "service": "Amazon SNS",
+    "description": "Servicio de mensajería basado en el modelo de publicación/suscripción que permite enviar notificaciones a múltiples destinatarios."
+  },
+  {
+    "id": 7,
+    "service": "Amazon SQS",
+    "description": "Servicio de colas de mensajes escalable y administrado que desacopla componentes de aplicaciones distribuidas."
+  },
+  {
+    "id": 8,
+    "service": "AWS Step Functions",
+    "description": "Servicio de orquestación sin servidor que coordina flujos de trabajo mediante la ejecución de múltiples pasos de manera secuencial o paralela."
+  },
+  {
+    "id": 9,
+    "service": "Amazon EC2",
+    "description": "Servicio de cómputo en la nube que permite ejecutar instancias virtuales escalables según demanda."
+  },
+  {
+    "id": 10,
+    "service": "AWS Elastic Beanstalk",
+    "description": "Plataforma como servicio que permite desplegar aplicaciones web completas con balanceo de carga, escalado automático y monitoreo integrado, sin necesidad de configurar servidores, redes o recursos manualmente."
+
+  },
+  {
+    "id": 11,
+    "service": "AWS Lambda",
+    "description": "Servicio de cómputo sin servidor que ejecuta código en respuesta a eventos y gestiona automáticamente la escalabilidad."
+  },
+  {
+    "id": 12,
+    "service": "AWS SAM",
+    "description": "Marco para desarrollar y desplegar aplicaciones sin servidor en AWS con herramientas integradas para pruebas y administración de infraestructura."
+  },
+  {
+    "id": 13,
+    "service": "AWS Copilot",
+    "description": "CLI que simplifica la administración y despliegue de aplicaciones en contenedores dentro de AWS ECS y AWS Fargate."
+  },
+  {
+    "id": 14,
+    "service": "Amazon ECR",
+    "description": "Repositorio administrado de imágenes de contenedores que permite almacenar, administrar y compartir imágenes de Docker de manera segura."
+  },
+  {
+    "id": 15,
+    "service": "Amazon ECS",
+    "description": "Orquestador de contenedores nativo de AWS compatible con Docker. Permite lanzar tareas o servicios sobre EC2 o Fargate con integración sencilla, sin necesidad de manejar clústeres externos ni componentes de Kubernetes."
+  },
+  {
+    "id": 16,
+    "service": "Amazon EKS",
+    "description": "Servicio administrado que ejecuta Kubernetes estándar en AWS. Permite migrar cargas existentes sin cambiar la arquitectura y controlar recursos mediante objetos como pods, namespaces y config maps."
+  },
+  {
+    "id": 17,
+    "service": "Amazon Aurora",
+    "description": "Base de datos relacional compatible con MySQL y PostgreSQL, diseñada por AWS para alto rendimiento, disponibilidad y replicación automática."
+  },
+  {
+    "id": 18,
+    "service": "Amazon DynamoDB",
+    "description": "Base de datos NoSQL completamente administrada, diseñada para ofrecer alto rendimiento y escalabilidad automática."
+  },
+  {
+    "id": 19,
+    "service": "Amazon ElastiCache",
+    "description": "Almacenamiento en memoria de alta velocidad para datos temporales como sesiones de usuario, rankings o resultados repetidos. Reduce la carga de las bases de datos y permite compartir datos entre instancias EC2 con baja latencia. Compatible con Redis y Memcached."
+  },
+  {
+    "id": 20,
+    "service": "Amazon MemoryDB",
+    "description": "Base de datos en memoria compatible con Redis, diseñada para cargas críticas que requieren alta durabilidad, replicación multi-AZ y consistencia fuerte. A diferencia de ElastiCache, mantiene un registro de escritura completo (transaction log) y está pensada como base de datos primaria, no solo como caché"
+  },
+  {
+    "id": 21,
+    "service": "Amazon RDS",
+    "description": "Servicio de base de datos relacional administrado que soporta motores como MySQL, PostgreSQL y SQL Server, con escalabilidad y alta disponibilidad."
+  },
+  {
+    "id": 22,
+    "service": "AWS Amplify",
+    "description": "Ecosistema de herramientas y servicios de AWS que acelera el desarrollo, implementación y operación de aplicaciones web y móviles modernas, basadas en arquitectura serverless, con integración continua, entornos controlados y escalabilidad automática"
+  },
+  {
+    "id": 23,
+    "service": "AWS CloudShell",
+    "description": "Terminal preconfigurada basada en navegador para ejecutar comandos AWS CLI sin instalación local, con credenciales ya cargadas por sesión."
+  },
+  {
+    "id": 24,
+    "service": "AWS CodeArtifact",
+    "description": "Gestor de paquetes seguro para almacenar y compartir dependencias como npm, Maven o PyPI entre cuentas y repositorios."
+  },
+  {
+    "id": 25,
+    "service": "AWS CodeBuild",
+    "description": "Servicio de compilación sin servidor que automatiza pruebas, instalación de dependencias y construcción de artefactos en flujos CI/CD."
+  },
+  {
+    "id": 26,
+    "service": "AWS CodeDeploy",
+    "description": "Automatiza el despliegue de aplicaciones a instancias EC2, contenedores ECS o funciones Lambda, con control de versiones y sin tiempo de inactividad."
+  },
+  {
+    "id": 27,
+    "service": "Amazon CodeGuru",
+    "description": "Usa machine learning para analizar código fuente y detectar problemas de rendimiento, seguridad o buenas prácticas en repositorios y aplicaciones en ejecución."
+  },
+  {
+    "id": 28,
+    "service": "AWS CodePipeline",
+    "description": "Servicio de orquestación de CI/CD que automatiza cada etapa del ciclo de vida de desarrollo, desde la obtención del código hasta pruebas, aprobación manual y despliegue. Se integra con servicios como CodeCommit, CodeBuild, CodeDeploy, Lambda y herramientas externas como GitHub o Jenkins."
+  },
+  {
+    "id": 29,
+    "service": "AWS X-Ray",
+    "description": "Realiza trazabilidad distribuida para detectar cuellos de botella y errores en arquitecturas serverless o microservicios."
+  },
+  {
+    "id": 30,
+    "service": "AWS AppConfig",
+    "description": "Permite cambiar parámetros clave de una aplicación en tiempo real, como modos de funcionamiento o valores de control, sin modificar el código ni volver a desplegar. Incluye validación, monitoreo y reversión automática si se detectan errores"
+  },
+  {
+    "id": 31,
+    "service": "AWS CDK",
+    "description": "Define recursos de AWS con lenguajes de programación como TypeScript o Python, generando plantillas CloudFormation de forma programática."
+  },
+  {
+    "id": 32,
+    "service": "AWS CloudFormation",
+    "description": "Servicio de infraestructura como código que permite definir y administrar recursos AWS mediante plantillas YAML o JSON."
+  },
+  {
+    "id": 33,
+    "service": "AWS CloudTrail",
+    "description": "Registra todas las llamadas API a servicios AWS para fines de auditoría, análisis de seguridad y cumplimiento."
+  },
+  {
+    "id": 34,
+    "service": "Amazon CloudWatch",
+    "description": "Recolecta métricas, logs y eventos de recursos AWS, permitiendo alertas, dashboards y respuesta automática a incidentes."
+  },
+  {
+    "id": 35,
+    "service": "Registros de CloudWatch",
+    "description": "Almacenamiento y análisis de logs."
+  },
+  {
+    "id": 36,
+    "service": "AWS CLI",
+    "description": "Permite interactuar con los servicios de AWS desde la terminal, automatizar tareas y ejecutar operaciones como creación de recursos, gestión de políticas o despliegue de plantillas, sin necesidad de usar la consola web."
+  },
+  {
+    "id": 37,
+    "service": "AWS Systems Manager",
+    "description": "Administración centralizada de recursos AWS."
+  },
+  {
+    "id": 38,
+    "service": "Amazon API Gateway",
+    "description": "Servicio administrado para crear APIs RESTful, HTTP o WebSocket. Permite definir stages con variables para controlar versiones, integrar con Lambda o servicios HTTP, controlar acceso con API Keys, throttling y autorizadores. Escala automáticamente y permite deployment controlado por stage sin afectar producción."
+  },
+  {
+    "id": 39,
+    "service": "Amazon CloudFront",
+    "description": "CDN que distribuye contenido web de forma rápida y segura, y permite restringir el acceso directo a S3 usando Origin Access Control (OAC)."
+  },
+  {
+    "id": 40,
+    "service": "ELB",
+    "description": "Distribuye tráfico entre múltiples instancias o contenedores. Incluye Application, Network y Gateway Load Balancer para distintos niveles de red o aplicación."
+  },
+  {
+    "id": 41,
+    "service": "Amazon Route 53",
+    "description": "Servicio de DNS altamente disponible y escalable que permite enrutar tráfico de usuarios de manera eficiente."
+  },
+  {
+    "id": 42,
+    "service": "Amazon VPC",
+    "description": "description\": \"Permite crear y controlar redes privadas en la nube, configurar subredes, direcciones IP y reglas de acceso. Incluye registros de flujo que permiten verificar si el tráfico entra o sale correctamente del entorno."
+  },
+  {
+    "id": 43,
+    "service": "AWS Certificate Manager",
+    "description": "Emite y renueva automáticamente credenciales digitales para cifrar el tráfico entre usuarios y servicios como ELB, CloudFront o API Gateway, sin necesidad de configuración manual ni instalación compleja."
+  },
+  {
+    "id": 44,
+    "service": "Amazon Cognito",
+    "description": "Servicio de autenticación y autorización para aplicaciones web y móviles, con soporte para federación de identidades."
+  },
+  {
+    "id": 45,
+    "service": "IAM",
+    "description": "Controla quién puede acceder a qué recursos en AWS usando usuarios, roles y políticas detalladas de permisos."
+  },
+  {
+    "id": 46,
+    "service": "AWS KMS",
+    "description": "Servicio administrado para crear y controlar claves criptográficas utilizadas en el cifrado de datos dentro de AWS."
+  },
+  {
+    "id": 47,
+    "service": "AWS Private Certificate Authority",
+    "description": "Permite generar credenciales digitales para identificar recursos internos como servidores, microservicios o dispositivos en redes privadas. Ideal cuando se requiere un sistema de confianza interno, control de emisión y cumplimiento de políticas corporativas."
+  },
+  {
+    "id": 48,
+    "service": "AWS Secrets Manager",
+    "description": "Permite guardar y acceder de forma segura a contraseñas, tokens o claves, con soporte para rotación automática usando funciones Lambda. Admite estrategias como usuarios alternos para actualizar credenciales sin afectar el funcionamiento de las aplicaciones."
+  },
+  {
+    "id": 49,
+    "service": "AWS STS",
+    "description": "Servicio que proporciona credenciales temporales para acceder de manera segura a recursos en AWS sin usar credenciales permanentes."
+  },
+  {
+    "id": 50,
+    "service": "AWS WAF",
+    "description": "Filtro de tráfico HTTP/S que permite bloquear inyecciones SQL, XSS y otras amenazas web mediante reglas personalizadas o administradas. Se integra con CloudFront, ALB y API Gateway para proteger sitios y APIs públicas."
+  },
+  {
+    "id": 51,
+    "service": "Amazon EBS",
+    "description": "Servicio de almacenamiento en bloque de baja latencia, diseñado para ser usado como disco virtual con instancias EC2. Es ideal para bases de datos, sistemas de archivos o aplicaciones que requieren persistencia entre reinicios, y admite snapshots y cifrado."
+  },
+  {
+    "id": 52,
+    "service": "Amazon EFS",
+    "description": "Sistema de archivos elástico basado en NFS, ideal para compartir datos entre múltiples instancias EC2 en paralelo. Se escala automáticamente y permite acceso simultáneo, siendo útil para aplicaciones distribuidas como análisis de datos, entornos de desarrollo o cargas HPC."
+  },
+  {
+    "id": 53,
+    "service": "Amazon S3",
+    "description": "Servicio de almacenamiento de objetos escalable que permite almacenar y recuperar grandes cantidades de datos de manera segura y económica."
+  },
+  {
+    "id": 54,
+    "service": "Amazon S3 Glacier",
+    "description": "Almacenamiento de archivos en frío optimizado para archivado de datos con opciones de recuperación bajo demanda."
+  },
+  {
+    "id": 55,
+    "service": "Amazon Lightsail",
+    "description": "Solución simplificada para lanzar sitios web, servidores virtuales o bases de datos con plantillas preconfiguradas, costos mensuales fijos y mínima configuración. Ideal para desarrolladores que quieren evitar la complejidad de EC2 o VPC."
+  },
+  {
+    "id": 56,
+    "service": "AWS Fargate",
+    "description": "Permite ejecutar contenedores sin aprovisionar ni administrar servidores. Ideal para tareas y servicios en ECS o EKS con escalado automático por demanda, facturación por segundo y aislamiento por seguridad a nivel de tarea."
+  },
+  {
+    "id": 57,
+    "service": "Amazon Glue",
+    "description": "Servicio de ETL que automatiza la preparación y transformación de datos para análisis en AWS."
+  },
+  {
+    "id": 58,
+    "service": "AWS App Runner",
+    "description": "Servicio completamente administrado que permite implementar contenedores directamente desde un repositorio de código o imagen (GitHub o ECR) sin necesidad de configurar infraestructura. Escala automáticamente según la carga y expone la app mediante HTTPS con certificados TLS integrados."
+  },
+  {
+    "id": 59,
+    "service": "AWS Organizations",
+    "description": "Administración centralizada de múltiples cuentas de AWS con políticas y seguridad unificada."
+  },
+  {
+    "id": 60,
+    "service": "AWS Config",
+    "description": "Monitorea el estado interno de recursos en AWS, detecta cambios frente a reglas definidas y alerta sobre incumplimientos, guardando el historial para control y auditoría."
+  },
+  {
+    "id": 61,
+    "service": "AWS Shield",
+    "description": "Protección automatizada contra ataques DDoS en aplicaciones alojadas en AWS."
+  },
+  {
+    "id": 62,
+    "service": "AWS CloudHSM",
+    "description": "Módulo de seguridad de hardware para la gestión de claves criptográficas con altos niveles de seguridad."
+  },
+  {
+    "id": 63,
+    "service": "Amazon FSx",
+    "description": "Servicio que proporciona sistemas de archivos de alto rendimiento compatibles con Windows y Lustre."
+  }
+]
