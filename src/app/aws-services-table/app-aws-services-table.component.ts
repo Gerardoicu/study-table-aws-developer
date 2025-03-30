@@ -62,7 +62,7 @@ export class AppAwsServicesTableComponent implements OnInit {
     this.awsServiceService.getAwsServices().subscribe(services => {
       this.awsServices = services.map(service => ({ ...service }));
       this.awsServicesShuffle = this.awsServices.map(service => ({ ...service }));
-      this.filteredAwsServices = [...this.awsServicesShuffle]; 
+      this.filteredAwsServices = [...this.awsServicesShuffle];
     });
   }
 
@@ -154,7 +154,8 @@ export class AppAwsServicesTableComponent implements OnInit {
       ...service,
       description: shuffledDescriptions[index]
     }));
-
+    
+    this.filteredAwsServices = [...this.awsServicesShuffle];
     this.selectedCell = null;
     this.touchedCells.clear();
     this.startTimer();
