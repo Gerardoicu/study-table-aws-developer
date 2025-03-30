@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { TimeFormatPipe } from '../timeFormatPipe';
-import {ServiceAws} from './ServiceAws';
-import {AwsService} from './awsService';
-import {FormsModule} from '@angular/forms';
+import { ServiceAws } from './ServiceAws';
+import { AwsService } from './awsService';
 
 @Component({
   selector: 'app-aws-services-table',
@@ -20,9 +20,10 @@ export class AppAwsServicesTableComponent implements OnInit {
   touchedCells = new Set<string>();
   awsServices: ServiceAws[] = [];
   awsServicesShuffle: ServiceAws[] = [];
-  selectedCell: { x: number; y: number } | null = null;
+  selectedCell: { x: number; id: number } | null = null;
   timer: any = null;
   elapsedTime: number = 0;
+
   columns = [
     { key: 'description', label: 'Description' }
   ];
@@ -31,31 +32,6 @@ export class AppAwsServicesTableComponent implements OnInit {
     private awsServiceService: AwsService,
     private cdr: ChangeDetectorRef
   ) {}
-
-  startTimer(): void {
-    this.stopTimer(); // Reinicia cualquier timer anterior
-    this.elapsedTime = 0;
-    this.timer = setInterval(() => {
-      this.elapsedTime++;
-      this.cdr.detectChanges();
-    }, 1000);
-  }
-  stopTimer(): void {
-    if (this.timer) {
-      clearInterval(this.timer);
-      this.timer = null;
-    }
-  }
-  getBestTime(): number | null {
-    const value = localStorage.getItem('bestTime');
-    return value ? Number(value) : null;
-  }
-  saveBestTime(time: number): void {
-    const currentBest = localStorage.getItem('bestTime');
-    if (!currentBest || time < Number(currentBest)) {
-      localStorage.setItem('bestTime', time.toString());
-    }
-  }
 
   ngOnInit(): void {
     this.bestTime = this.getBestTime();
@@ -79,87 +55,95 @@ export class AppAwsServicesTableComponent implements OnInit {
       service.description.toLowerCase().includes(query)
     );
   }
-  getColumnValue(service: ServiceAws, columnKey: string): string {
-    return <string>service[columnKey as keyof ServiceAws] ?? '';
-  }
 
-  onCellClick(event: MouseEvent, x: number, y: number): void {
+  onCellClick(event: MouseEvent, x: number, id: number): void {
     event.preventDefault();
-
-    if (event.button !== 0) return; // solo click izquierdo
+    if (event.button !== 0) return;
 
     if (!this.selectedCell) {
-      // Primer click: seleccionar celda
-      this.selectedCell = { x, y };
-      console.log(`🟢 Celda seleccionada: (${x}, ${y})`);
+      this.selectedCell = { x, id };
+      console.log(`🟢 Celda seleccionada: (${x}, id=${id})`);
     } else {
-      const { x: x1, y: y1 } = this.selectedCell;
+      const { x: x1, id: id1 } = this.selectedCell;
       const x2 = x;
-      const y2 = y;
+      const id2 = id;
 
-      if (x1 !== x2 || y1 !== y2) {
-        this.swapValues(x1, y1, x2, y2);
-        console.log(`🔁 Intercambio ejecutado: (${x1}, ${y1}) ↔ (${x2}, ${y2})`);
+      if (x1 !== x2 || id1 !== id2) {
+        const y1 = this.awsServicesShuffle.findIndex(s => s.id === id1);
+        const y2 = this.awsServicesShuffle.findIndex(s => s.id === id2);
+
+        if (y1 !== -1 && y2 !== -1) {
+          this.swapDescriptions(y1, y2);
+          this.touchedCells.add(`${x1},${y1}`);
+          this.touchedCells.add(`${x2},${y2}`);
+        }
       }
 
-      // Deseleccionar después del segundo click
       this.selectedCell = null;
     }
   }
 
-  swapValues(x1: number, y1: number, x2: number, y2: number): void {
-    const row1 = this.awsServicesShuffle[y1];
-    const row2 = this.awsServicesShuffle[y2];
+  swapDescriptions(y1: number, y2: number): void {
+    const temp = this.awsServicesShuffle[y1].description;
+    this.awsServicesShuffle[y1].description = this.awsServicesShuffle[y2].description;
+    this.awsServicesShuffle[y2].description = temp;
 
-    if (!row1 || !row2) return;
-
-    const key1 = this.columns[x1].key;
-    const key2 = this.columns[x2].key;
-
-    // Guardar que ambas celdas fueron tocadas
-    this.touchedCells.add(`${x1},${y1}`);
-    this.touchedCells.add(`${x2},${y2}`);
-
-    // @ts-ignore
-    const temp = row1[key1];
-    // @ts-ignore
-    row1[key1] = row2[key2];
-    // @ts-ignore
-    row2[key2] = temp;
     if (this.isTableResolved()) {
       this.stopTimer();
       this.saveBestTime(this.elapsedTime);
     }
+
     this.cdr.detectChanges();
+  }
+
+  getCellStatus(x: number, id: number): 'correct' | 'incorrect' | 'untouched' {
+    const y = this.awsServicesShuffle.findIndex(s => s.id === id);
+    if (y === -1) return 'untouched';
+
+    const touched = this.touchedCells.has(`${x},${y}`);
+    if (!touched) return 'untouched';
+
+    const original = this.awsServices[y][this.columns[x].key as keyof ServiceAws];
+    const actual = this.awsServicesShuffle[y][this.columns[x].key as keyof ServiceAws];
+
+    return actual === original ? 'correct' : 'incorrect';
+  }
+
+  getColumnValue(service: ServiceAws, columnKey: string): string {
+    return <string>service[columnKey as keyof ServiceAws] ?? '';
   }
 
   reset(): void {
     this.awsServicesShuffle = this.awsServices.map(service => ({ ...service }));
+    this.filteredAwsServices = [...this.awsServicesShuffle];
     this.selectedCell = null;
     this.touchedCells.clear();
-    this.filteredAwsServices = [...this.awsServicesShuffle];
-
     this.cdr.detectChanges();
   }
 
   shuffle(): void {
-    // Obtener todas las descripciones
     const descriptions = this.awsServices.map(service => service.description ?? '');
-
-    // Mezclarlas
     const shuffledDescriptions = this.shuffleArray(descriptions);
 
-    // Asignarlas a una nueva lista de servicios, manteniendo el resto igual
     this.awsServicesShuffle = this.awsServices.map((service, index) => ({
       ...service,
       description: shuffledDescriptions[index]
     }));
-    
+
     this.filteredAwsServices = [...this.awsServicesShuffle];
     this.selectedCell = null;
     this.touchedCells.clear();
     this.startTimer();
     this.cdr.detectChanges();
+  }
+
+  shuffleArray(values: string[]): string[] {
+    const shuffled = [...values];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
   }
 
   isTableResolved(): boolean {
@@ -171,24 +155,32 @@ export class AppAwsServicesTableComponent implements OnInit {
       });
     });
   }
-  shuffleArray(values: string[]): string[] {
-    const shuffled = [...values];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+
+  startTimer(): void {
+    this.stopTimer();
+    this.elapsedTime = 0;
+    this.timer = setInterval(() => {
+      this.elapsedTime++;
+      this.cdr.detectChanges();
+    }, 1000);
+  }
+
+  stopTimer(): void {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
     }
-    return shuffled;
   }
 
-  getCellStatus(x: number, y: number): 'correct' | 'incorrect' | 'untouched' {
-    const touched = this.touchedCells.has(`${x},${y}`);
-    if (!touched) return 'untouched';
-
-    const original = this.awsServices[y][this.columns[x].key as keyof ServiceAws];
-    const actual = this.awsServicesShuffle[y][this.columns[x].key as keyof ServiceAws];
-
-    return actual === original ? 'correct' : 'incorrect';
+  getBestTime(): number | null {
+    const value = localStorage.getItem('bestTime');
+    return value ? Number(value) : null;
   }
 
-
+  saveBestTime(time: number): void {
+    const currentBest = localStorage.getItem('bestTime');
+    if (!currentBest || time < Number(currentBest)) {
+      localStorage.setItem('bestTime', time.toString());
+    }
+  }
 }

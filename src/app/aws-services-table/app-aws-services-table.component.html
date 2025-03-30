@@ -18,24 +18,23 @@
   <tr>
     <th class="fixed-col">ID</th>
     <th class="fixed-col">Service</th>
-
     <th *ngFor="let col of columns">{{ col.label }}</th>
   </tr>
   </thead>
 
   <tbody>
-  <tr *ngFor="let awsService of filteredAwsServices; let rowIndex = index">
+  <tr *ngFor="let awsService of filteredAwsServices">
     <td class="fixed-col">{{ awsService.id }}</td>
     <td class="fixed-col">{{ awsService.service }}</td>
     <td *ngFor="let col of columns; let colIndex = index"
-        (mousedown)="onCellClick($event, colIndex, rowIndex)"
+        (mousedown)="onCellClick($event, colIndex, awsService.id)"
         (contextmenu)="$event.preventDefault()"
         [ngClass]="{
-      'clickable-cell': true,
-      'selected': selectedCell?.x === colIndex && selectedCell?.y === rowIndex,
-      'correct': getCellStatus(colIndex, rowIndex) === 'correct',
-      'incorrect': getCellStatus(colIndex, rowIndex) === 'incorrect'
-    }">
+            'clickable-cell': true,
+            'selected': selectedCell?.x === colIndex && selectedCell?.id === awsService.id,
+            'correct': getCellStatus(colIndex, awsService.id) === 'correct',
+            'incorrect': getCellStatus(colIndex, awsService.id) === 'incorrect'
+          }">
       {{ getColumnValue(awsService, col.key) }}
     </td>
   </tr>
